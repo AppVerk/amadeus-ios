@@ -54,7 +54,7 @@ public class Amadeus {
                   environment: environment)
     }
     
-    private func getComponentsFromURL(response: Response, keyword: String) -> (path: String, params: [String: String]) {
+    private func getComponentsFromURL(response: Response, keyword: String) -> (path: String, params: [String: Encodable]) {
         if let nextURL = response.result["meta"]["links"][keyword].string {
             let url = URL(string: nextURL)
             

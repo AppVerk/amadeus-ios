@@ -15,7 +15,7 @@ public class FlightDelay {
     }
     
     /// Will there be a delay from BRU to FRA? If so how much delay?
-    public func get(params: [String: String], onCompletion: @escaping AmadeusResponse) {
+    public func get(params: [String: Encodable], onCompletion: @escaping AmadeusResponse) {
         client.get(path: "v1/travel/predictions/flight-delay", params: params, onCompletion: {
             result in
             onCompletion(result)

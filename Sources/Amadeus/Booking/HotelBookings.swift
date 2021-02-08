@@ -13,7 +13,7 @@ public class HotelBookings {
     /// - Returns:
     ///    `JSON` object
     ///
-    public func post(body: JSON, params: [String: String] = [:], onCompletion: @escaping AmadeusResponse) {
+    public func post(body: JSON, params: [String: Encodable] = [:], onCompletion: @escaping AmadeusResponse) {
         
         client.post(path: "/v1/booking/hotel-bookings", body: body, params: params, onCompletion: { result in
             onCompletion(result)

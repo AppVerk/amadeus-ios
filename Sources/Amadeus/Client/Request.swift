@@ -4,7 +4,7 @@ public typealias AmadeusResponse = (Result<Response, ResponseError>) -> Void
 
 public func send(verb: String,
                  url: String,
-                 headers: [String: String],
+                 headers: [String: Encodable],
                  body: String?,
                  onCompletion: @escaping AmadeusResponse) {
     
@@ -18,7 +18,7 @@ public func send(verb: String,
         }
         
         for header in headers {
-            request.setValue(header.value, forHTTPHeaderField: header.key)
+            request.setValue("\(header.value)", forHTTPHeaderField: header.key)
         }
         
         process(request: request, onCompletion: { result -> Void in

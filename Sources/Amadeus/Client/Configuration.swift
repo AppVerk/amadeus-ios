@@ -2,7 +2,7 @@ import Foundation
 
 public class Configuration {
     public var logLevel = "silent"
-    public var host = "test.api.amadeus.com"
+    public var host = "test.travel.api.amadeus.com/v1"
     public var ssl = true
     public var port = 443
     public var customAppId = "amadeus-swift-sdk"
