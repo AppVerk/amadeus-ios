@@ -7,7 +7,7 @@ public class FlightsSchedule {
         self.client = client
     }
 
-    public func get(params: [String: String], onCompletion: @escaping AmadeusResponse) {
+    public func get(params: [String: Encodable], onCompletion: @escaping AmadeusResponse) {
         client.get(path: "v2/schedule/flights", params: params, onCompletion: {
             result in
             onCompletion(result)

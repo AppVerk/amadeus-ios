@@ -17,7 +17,7 @@ public class Client {
                                   config: configuration)
     }
     
-    private func generateGetParameters(params: [String: String]) -> String {
+    private func generateGetParameters(params: [String: Encodable]) -> String {
         var res = ""
         var firstTime = true
         for item in params {
@@ -31,14 +31,14 @@ public class Client {
         return res
     }
     
-    public func get(path: String, params: [String: String], onCompletion: @escaping AmadeusResponse) {
+    public func get(path: String, params: [String: Encodable], onCompletion: @escaping AmadeusResponse) {
         request(verb: "GET", path: path, params: generateGetParameters(params: params), body: nil, onCompletion: {
             result in
             onCompletion(result)
         })
     }
     
-    public func post(path: String, body: JSON, params: [String: String] = [:], onCompletion: @escaping AmadeusResponse) {
+    public func post(path: String, body: JSON, params: [String: Encodable] = [:], onCompletion: @escaping AmadeusResponse) {
         if let bodyString = body.rawString() {
             request(verb: "POST", path: path, params: generateGetParameters(params: params), body: bodyString, onCompletion: { result in
                 onCompletion(result)
@@ -48,13 +48,13 @@ public class Client {
         }
     }
     
-    public func delete(path: String, params: [String: String] = [:], onCompletion: @escaping AmadeusResponse) {
+    public func delete(path: String, params: [String: Encodable] = [:], onCompletion: @escaping AmadeusResponse) {
         request(verb: "DELETE", path: path, params: generateGetParameters(params: params), body: nil, onCompletion: { result in
             onCompletion(result)
         })
     }
     
-    private func prettyPrintRequest(verb: String, url: String, headers: [String: String]) {
+    private func prettyPrintRequest(verb: String, url: String, headers: [String: Encodable]) {
         print("\n")
         print("\(verb) \(url)")
         for header in headers {
@@ -63,14 +63,14 @@ public class Client {
         print("\n")
     }
     
-    private func request(verb: String, path: String, params: String, body: String?, onCompletion: @escaping AmadeusResponse) {
+    private func request(verb: String, path: String, params: Encodable, body: String?, onCompletion: @escaping AmadeusResponse) {
         
         accessToken.get(onCompletion: { result in
             
             switch result {
                 
             case .success(let auth):
-                let url = self.configuration.baseURL + path + params
+                let url = self.configuration.baseURL + path + "\(params)"
                 
                 let headers = ["Content-Type": "application/json",
                                "Authorization": "Bearer \(auth)",

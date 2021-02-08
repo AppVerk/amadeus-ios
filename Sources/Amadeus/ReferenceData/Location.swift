@@ -33,7 +33,7 @@ public class Location {
     ///
     /// - Returns:
     ///    `JSON` object
-    public func get(params: [String: String], onCompletion: @escaping AmadeusResponse) {
+    public func get(params: [String: Encodable], onCompletion: @escaping AmadeusResponse) {
         client.get(path: "v1/reference-data/locations/\(locationId)", params: params, onCompletion: {
             result in
             onCompletion(result)

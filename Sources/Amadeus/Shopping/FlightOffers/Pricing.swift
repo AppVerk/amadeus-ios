@@ -13,7 +13,7 @@ public class FlightOffersPrice {
     /// - Returns:
     ///    `JSON` object
     ///
-    public func post(body: JSON, params: [String: String] = [:], onCompletion: @escaping AmadeusResponse) {
+    public func post(body: JSON, params: [String: Encodable] = [:], onCompletion: @escaping AmadeusResponse) {
         
         var flightOffers: JSON = body
         

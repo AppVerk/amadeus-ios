@@ -13,7 +13,7 @@ public class Prediction {
     /// - Returns:
     ///    `JSON` object
     ///
-    public func post(body: JSON, params: [String: String] = [:], onCompletion: @escaping AmadeusResponse) {
+    public func post(body: JSON, params: [String: Encodable] = [:], onCompletion: @escaping AmadeusResponse) {
         client.post(path: "/v2/shopping/flight-offers/prediction",
                     body: body,
                     params: params,

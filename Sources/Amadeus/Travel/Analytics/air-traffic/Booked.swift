@@ -31,7 +31,7 @@ public class Booked {
     ///
     /// - Returns:
     ///    `JSON` object
-    public func get(params: [String: String], onCompletion: @escaping AmadeusResponse) {
+    public func get(params: [String: Encodable], onCompletion: @escaping AmadeusResponse) {
         client.get(path: "v1/travel/analytics/air-traffic/booked", params: params, onCompletion: {
             result in
             onCompletion(result)
